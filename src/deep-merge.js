@@ -1,6 +1,21 @@
 function isSimple(obj) {
   const t = (typeof obj).trim().toLowerCase();
-  if (obj === null || t === 'undefined' || t === 'boolean' || t === 'number' || t === 'string') return true;
+  if (obj === null || t === 'undefined' || t === 'boolean' || t === 'number' || t === 'string' || t === 'function') return true;
+  return false;
+}
+
+function isArray(obj) {
+  return obj && typeof obj.length === 'number' && typeof obj.map === 'function';
+}
+
+function isReplacer(a, b) {
+  if (isSimple(b)) return true;
+  if (isArray(b)) return true;
+  if (b instanceof Date) return true;
+  if (b && b.__REPLACE__) return true;
+  if (isSimple(a)) return true;
+  if (isArray(a)) return true;
+  if (a instanceof Date) return true;
   return false;
 }
 
@@ -16,28 +31,19 @@ function sortObject(obj) {
 
   // return sorted object
   return Object.keys(obj).sort().reduce((o, k) => {
-    if (obj[k] === undefined) return o;
+    if (obj[k] === undefined || k === '__REPLACE__') return o;
     return Object.assign(o, {[k]: sortObject(obj[k])});
   }, {});
 }
 
 function deepMerge(a, b) {
+  // undefined override, return original
+  if (b === undefined) return sortObject(a);
+
   // null override, use undefined
   if (b === null) return undefined;
 
-  // undefined override, return original
-  if (b === undefined) return a;
-
-  // override is simple, use b
-  if (typeof b !== 'object') return b;
-
-  // a isn't an object, or b has replace
-  if (typeof a !== 'object' || b.hasOwnProperty('__REPLACE__')) {
-    return sortObject({ ...b, __REPLACE__: undefined });
-  }
-
-  // array/array-like?
-  if (typeof b.length === 'number' && typeof b.map === 'function') return sortObject(b);
+  if (isReplacer(a, b)) return sortObject(b);
 
   // return sorted object
   return []

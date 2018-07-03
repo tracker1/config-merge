@@ -1,7 +1,7 @@
 const { deepMerge, sortObject } = require('./deep-merge');
 
 describe('deep-merge/deepMerge', () => {
-  it ('will deep merge objects', () => {
+  it('will deep merge objects', () => {
     const base = {
       a: 1,
       b: {
@@ -34,9 +34,26 @@ describe('deep-merge/deepMerge', () => {
     expect(deepMerge({}, 1)).toStrictEqual(1);
   });
 
-  it('will return b when a is not an object', () => {
+  it('will return clonded Date, when b is a Date', () => {
+    const b = new Date();
+    const r = deepMerge({}, b);
+    expect(b).toEqual(r);
+    expect(b === r).toBeFalsy();
+  })
+
+  it('will return b when a is simple', () => {
     const b = { a: 1, b: { c: 2 }};
     expect(deepMerge(0, b)).toEqual(b);
+  });
+
+  it('will return b when a is an array', () => {
+    const b = { a: 1, b: { c: 2 }};
+    expect(deepMerge([], b)).toEqual(b);
+  });
+
+  it('will return b when a is a Date', () => {
+    const b = { a: 1, b: { c: 2 }};
+    expect(deepMerge(new Date(), b)).toEqual(b);
   });
 
   it('will override arrays', () => {
@@ -64,6 +81,7 @@ describe('deep-merge/sortObject', () => {
   it('will return primatives as-is', () => {
     expect(sortObject(0)).toStrictEqual(0);
   });
+
   it('will map arrays', () => {
     const a = {
       length: 1,
@@ -71,6 +89,7 @@ describe('deep-merge/sortObject', () => {
     };
     expect(sortObject(a)).toStrictEqual(1234)
   });
+
   it('will clone dates', () => {
     const d1 = new Date();
     const d2 = sortObject(d1);

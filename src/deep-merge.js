@@ -6,7 +6,7 @@ function sortObject(obj) {
   if (typeof obj.length === 'number' && typeof obj.map === 'function') return obj.map(sortObject);
 
   // date, return clone
-  if (obj instanceof Date) return new Date(obj); // clone dates
+  if (obj instanceof Date) return new Date(obj.valueOf()); // clone dates
 
   // return sorted object
   return Object.keys(obj).sort().reduce((o, k) => {

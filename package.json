@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Deep merge configuration .yml in directory trees into output file.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tracker1/config-merge.git"
@@ -18,5 +15,24 @@
   "homepage": "https://github.com/tracker1/config-merge#readme",
   "dependencies": {
     "js-yaml": "^3.12.0"
+  },
+  "devDependencies": {
+    "@std/esm": "^0.26.0",
+    "jest": "^23.2.0"
+  },
+  "jest": {
+    "testMatch": ["(*.)(spec|test).(js|mjs)$"],
+    "setupTestFrameworkScriptFile": "./node_modules/@std/esm/esm.js",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
+  },
+  "scripts": {
+    "test": "jest --coverage"
   }
 }

@@ -29,4 +29,4 @@ function deepMerge(a, b) {
     );
 }
 
-module.exports = deepMerge;
+module.exports = { deepMerge, sortObject };

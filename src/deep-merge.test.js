@@ -61,7 +61,7 @@ describe('deep-merge/deepMerge', () => {
   });
 });
 
-describe('deepMerge/sortObject', () => {
+describe('deep-merge/sortObject', () => {
   it('will return primatives as-is', () => {
     expect(sortObject(0)).toStrictEqual(0);
   });

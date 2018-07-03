@@ -1,6 +1,5 @@
 const { deepMerge, sortObject } = require('./deep-merge');
 
-console.log({ deepMerge, sortObject });
 describe('deep-merge/deepMerge', () => {
   it ('will deep merge objects', () => {
     const base = {

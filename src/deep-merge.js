@@ -1,6 +1,12 @@
+function isSimple(obj) {
+  const t = (typeof obj).trim().toLowerCase();
+  if (obj === null || t === 'undefined' || t === 'boolean' || t === 'number' || t === 'string') return true;
+  return false;
+}
+
 function sortObject(obj) {
-  // simple type, return as is
-  if (typeof obj !== 'object') return obj;
+  // simple value type, return as is
+  if (isSimple(obj)) return obj;
 
   // array, return map
   if (typeof obj.length === 'number' && typeof obj.map === 'function') return obj.map(sortObject);

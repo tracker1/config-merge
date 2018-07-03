@@ -17,12 +17,24 @@
     "js-yaml": "^3.12.0"
   },
   "devDependencies": {
-    "@std/esm": "^0.26.0",
+    "esm": "^3.0.62",
     "jest": "^23.2.0"
   },
+  "esm": {
+    "mode": "auto"
+  },
   "jest": {
-    "testMatch": ["(*.)(spec|test).(js|mjs)$"],
-    "setupTestFrameworkScriptFile": "./node_modules/@std/esm/esm.js",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "node",
+      "mjs"
+    ],
+    "testMatch": [
+      "**/*.test.js"
+    ],
+    "setupTestFrameworkScriptFile": "esm",
     "coverageThreshold": {
       "global": {
         "branches": 50,

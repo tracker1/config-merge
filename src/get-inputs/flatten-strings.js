@@ -11,8 +11,6 @@ const matchLangLoc = l => /^[A-Za-z]{2}\-[A-Za-z]{2}$/.test(l);
 const lang = l => l.toLowerCase().trim().split('-')[0];
 
 const flattenStrings = (base, input) => {
-  base = flattenBase(base);
-
   const result = {
     default: deepMerge(
       base && (base.default || base['!default']) || {},

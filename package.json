@@ -2,7 +2,8 @@
   "name": "@tracker1/config-merge",
   "version": "1.0.0",
   "description": "Deep merge configuration .yml in directory trees into output file.",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": "src/bin.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tracker1/config-merge.git"
@@ -14,10 +15,14 @@
   },
   "homepage": "https://github.com/tracker1/config-merge#readme",
   "dependencies": {
-    "js-yaml": "^3.12.0"
+    "js-yaml": "^3.12.0",
+    "minimist": "^1.2.0",
+    "probe-image-size": "^4.0.0"
   },
   "devDependencies": {
-    "jest": "^23.2.0"
+    "jest": "^23.2.0",
+    "mkdirp-promise": "^5.0.1",
+    "rimraf-promise": "^2.0.0"
   },
   "jest": {
     "coverageThreshold": {
@@ -30,6 +35,8 @@
     }
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "pretestf": "node scripts/pretestf",
+    "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output"
   }
 }

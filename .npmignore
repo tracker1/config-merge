@@ -1,3 +1,13 @@
+scripts
+tests
+*.test.js
+.gitignore
+.npmignore
+.vscode
+
+
+##### .gitignore copied below ========================================================
+
 temp
 temp*
 .temp*

@@ -10,15 +10,16 @@ const matchLang = l => /^[A-Za-z]{2}$/.test(l);
 const matchLangLoc = l => /^[A-Za-z]{2}\-[A-Za-z]{2}$/.test(l);
 const lang = l => l.toLowerCase().trim().split('-')[0];
 
-const flattenStrings = (base, input) => {
-  const result = {
-    default: deepMerge(
-      base && (base.default || base['!default']) || {},
-      input && (input.default || input['!default']) || {},
-    ),
-  };
+const getDefault = i => i && (i.default || i['!default']) || {};
+const mergeDefault = (a, b) => ({ default: deepMerge(getDefault(a), getDefault(b)) });
 
+const flattenStrings = (base, input) => {
+  // get an object with a default from base and input
+  const result = mergeDefault(base, input);
+
+  // gets the base language result or the default/fallback
   const getBase = l => result[lang(l)] || result.default;
+  const getBaseLoc = l => deepMerge(getBase(l), base[l] || undefined);
 
   // add/merge base languages
   Object.assign(result, parse(base, matchLang, _ => result.default));
@@ -30,7 +31,7 @@ const flattenStrings = (base, input) => {
   Object.assign(result, parse(input, matchLang, getBase));
 
   // Add/merge language-locale options
-  Object.assign(result, parse(input, matchLangLoc, getBase));
+  Object.assign(result, parse(input, matchLangLoc, getBaseLoc));
 
   return result;
 }

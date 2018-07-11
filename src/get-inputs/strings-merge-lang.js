@@ -3,14 +3,15 @@ const deepMerge = require('../deep-merge');
 /**
  * Wrap up the inheritance change for use with building Strings
  * @param {object} input Object to properties as last in chain to inherit to
- * @param {*} filter Method to filter out appropriate keys to work with
- * @param {*} getBase Method to retrieve appropriate base to inherit from
+ * @param {function} filter Method to filter out appropriate keys to work with
+ * @param {function} getBase Method to retrieve appropriate base to inherit from
  * @returns {object} New/Merged object
  */
-const parseStrings = (input, filter, getBase) => 
+const mergeLang = (input, filter, getBase) => 
   Object.entries(input)
-    .filter(([k]) => filter(k))
-    .map(([k, v]) => [k.toLowerCase(), deepMerge(getBase(k.toLowerCase()), v)])
+    .filter(([k]) => !(/^[\_\.]/).test(k) && filter(k))
+    .map(([k, v]) => [k.toLowerCase().replace(/^[\!]/,''), v])
+    .map(([k, v]) => [k, deepMerge(getBase(k), v)])
     .reduce((o, [k,v]) => Object.assign(o, { [k]:v }, {}));
 
 
@@ -55,5 +56,5 @@ const mergeDefault = (a, b) => ({ default: deepMerge(getDefault(a), getDefault(b
 
 // exports all methods
 module.exports = {
-  parseStrings, matchLang, matchLoc, lang, getDefault, mergeDefault
+  mergeLang, matchLang, matchLoc, lang, getDefault, mergeDefault
 };

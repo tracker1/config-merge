@@ -14,6 +14,12 @@ const mkdir = async p => {
 const loadImages = async images => (await Promise.all(Object.values(images).map(getImage)))
   .reduce((o, i) => Object.assign(o, { [i.name]: i }), {});
 
+/**
+ * Takes input target data and outputs it to a given path
+ * @param {*} targets Input target data
+ * @param {*} outputDirectory Path to output to
+ * @return {Promise}
+ */
 async function processOutput(targets, outputDirectory) {
   for (const [k,v] of Object.entries(targets)) {
     const out = path.join(outputDirectory, k);

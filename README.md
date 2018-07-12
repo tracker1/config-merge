@@ -88,10 +88,11 @@ as a key without the output object.
 
 Images, as a `config/images` directory, should be used sparingly.  It will only bring in images with the following extensions (`.png`, `.gif`, `.jpg`, `.svg`, `.webm`).  It will output `images.json` which will contain a collection based on original file name with extension, and will contain objects with the following properties:
 
-  - `height`
-  - `width`
-  - `src` - encoded for use in an `image` html element (not `.svg`)
-  - `svg` - actual xml for `.svg` images only
+  - `name`  - filename
+  - `width` - width
+  - `height` - height
+  - `type` - image file extension/type
+  - `data` - base64 encoded image file
 
 ### Strings
 

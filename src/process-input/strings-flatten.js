@@ -11,14 +11,19 @@ const flattenStrings = (base, input) => {
   /**
    * For the "default" a key of "default" then "!default" is checked.
    * 
-   * Inheritance is as follows (language: en, locale: us in example):
+   * Inheritance is as follows:
    * 
    *    - base.default
    *    - input.default
-   *    - base.en
-   *    - input.en
-   *    - base.en-us
-   *    - input.en-us
+   *    - base.language
+   *    - base.language-location *
+   *    - input.language
+   *    - input.language-location *
+   * 
+   * Language is two character language code (en, es, ...)
+   * Location is two character country code (us, es, mx, fr, ...)
+   * 
+   * * - language-location only
    */
 
   // get an object with a default from base and input
@@ -31,7 +36,13 @@ const flattenStrings = (base, input) => {
   const baseLoc = l => matchLoc(l) && base && base[l]
 
   // gets the merged base for an input language-locale
-  const getBaseLoc = l => baseLoc(l) ? deepMerge(getBaseLang(l), base[l]) : getBaseLang(l);
+  const getBaseLoc = l => 
+    baseLoc(l) ? 
+      [
+        result[lang(l)] || result.default, 
+        base && base[l], 
+        input && input[lang(l)],
+      ].reduce(deepMerge, {}) : getBaseLang(l);
 
   // add/merge base languages
   Object.assign(result, mergeLang(base, matchLang, _ => result.default));

@@ -34,12 +34,13 @@ async function main(skip, processArgs) {
       return;
   }
   
-  const [outputDirectory, inputDirectory] = argv._;
+  const [inputDirectory, outputDirectory] = argv._;
   
   if (await checkDirs({ inputDirectory, outputDirectory })) return;
 
   console.log(`PROCESSING: ${inputDirectory} ${outputDirectory}`);
-  configMerge(inputDirectory, outputDirectory);
+  const config = await configMerge(inputDirectory, outputDirectory);
+  // console.log(config);
 }
 
 module.exports = { main, checkDir, checkDirs, helpText };

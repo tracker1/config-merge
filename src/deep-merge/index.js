@@ -1,3 +1,3 @@
-import { deepMerge } from './deep-merge';
+const { deepMerge } = require('./deep-merge');
 
-export default deepMerge;
+module.exports = deepMerge;

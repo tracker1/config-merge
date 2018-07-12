@@ -7,12 +7,11 @@ const deepMerge = require('../deep-merge');
  * @param {function} getBase Method to retrieve appropriate base to inherit from
  * @returns {object} New/Merged object
  */
-const mergeLang = (input, filter, getBase) => 
-  Object.entries(input)
+const mergeLang = (input, filter, getBase) => Object.entries(input)
     .filter(([k]) => !(/^[\_\.]/).test(k) && filter(k))
     .map(([k, v]) => [k.toLowerCase().replace(/^[\!]/,''), v])
     .map(([k, v]) => [k, deepMerge(getBase(k), v)])
-    .reduce((o, [k,v]) => Object.assign(o, { [k]:v }, {}));
+    .reduce((o, [k,v]) => Object.assign(o, { [k]:v }), {});
 
 
 /**

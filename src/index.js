@@ -1,9 +1,6 @@
-// merge-config inputDirectory outputDirectory
+const processInput = require('./process-input');
+const processOutput = require('./process-output');
 
-const getInputs = require('./get-inputs');
-
-async function processConfig(inputDirectory, outputDirectory) {
-  const targets = getInputs(inputDirectory);
-}
-
-module.exports = processConfig;
+module.exports = async (inputDirectory, outputDirectory) => {
+  processOutput(await processInput(inputDirectory), outputDirectory);
+};

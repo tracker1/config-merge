@@ -9,7 +9,7 @@
     "url": "git+https://github.com/tracker1/config-merge.git"
   },
   "author": "Michael J. Ryan <tracker1@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tracker1/config-merge/issues"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "js-yaml": "^3.12.0",
     "minimist": "^1.2.0",
+    "mz": "^2.7.0",
     "probe-image-size": "^4.0.0"
   },
   "devDependencies": {

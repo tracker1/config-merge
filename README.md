@@ -1,27 +1,6 @@
 # config-merge
 
-Deep merge configuration `.yml` files in directory trees into output file.  The purpose is to allow for configuration of software for multiple release configuration options. The input is intended to have a `!default` setting for features/flags/options, while allowing for release overrides.
-
-There are multiple layers of releases with input directories like:
-
-  - `!default` - default configuration
-  - `config` - release configuration (basic, pro, client1, client2, ...)
-  - `config.environment` - environment specific config (such as pro-development)
-
-The `.yml` files in the config directory will be parsed, merged and outputted as `config.json` with each file name (without extension) serving
-as a key without the output object.
-
-Strings, as a `config/strings` directory, will specifically inherit in a similar method outlined below, 
-with output going to `strings.json` with each key being a rolled up 
-result.
-
-Images, as a `config/images` directory, should be used sparingly.  It will only bring in images with the following extensions (`.png`, `.gif`, `.jpg`, `.svg`, `.webm`).  It will output `images.json` which will contain a collection based on original file name with extension, and will contain objects with the following properties:
-
-  - `height`
-  - `width`
-  - `src` - encoded for use in an `image` html element (not `.svg`)
-  - `svg` - actual xml for `.svg` images only
-
+Deep merge configuration `.yml` files in directory trees into output files. 
 ## Installation
 
 ### Global
@@ -75,9 +54,35 @@ Images, as a `config/images` directory, should be used sparingly.  It will only 
       config1.environment (deep merge  !default -> config1 -> config1.environment)
       config2/  (deep merge of !default -> config2)
 
+## Intent
+
+The purpose is to allow for configuration of software for multiple release configuration options. The input is intended to have a `!default` setting for features/flags/options, while allowing for release overrides.
+
+There are multiple layers of releases with input directories like:
+
+  - `!default` - default configuration
+  - `config` - release configuration (basic, pro, client1, client2, ...)
+  - `config.environment` - environment specific config (such as pro-development)
+
+The `.yml` files in the config directory will be parsed, merged and outputted as `config.json` with each file name (without extension) serving
+as a key without the output object.
+
+### Images
+
+Images, as a `config/images` directory, should be used sparingly.  It will only bring in images with the following extensions (`.png`, `.gif`, `.jpg`, `.svg`, `.webm`).  It will output `images.json` which will contain a collection based on original file name with extension, and will contain objects with the following properties:
+
+  - `height`
+  - `width`
+  - `src` - encoded for use in an `image` html element (not `.svg`)
+  - `svg` - actual xml for `.svg` images only
+
+### Strings
+
+Strings, as a `config/strings` directory, will specifically inherit in a similar method to configurations themselves, with output to `strings.json` with each key being a rolled up result.
+
 **String Inheritance**
 
-For a given key in input of, as an example config1 for strings/en-us.yaml the inheritance chain would be as follows...
+String in heritance is as follows (example with `en-us`):
 
 - `!default/!default.yaml`
 - `config1/!default.yaml`
@@ -86,7 +91,7 @@ For a given key in input of, as an example config1 for strings/en-us.yaml the in
 - `!default/strings/en-us.yaml`
 - `config1/strings/en-us.yaml`
 
-For a given target for config1.environment, the `!default` above would be replaced by the output of `config1`.
+For a environment targets, the `!default` above would be replaced by the output of `config1`.
 
 ## Future
 

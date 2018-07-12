@@ -1,6 +1,13 @@
-# config-merge
+# @tracker1/config-merge
+
+<span class="badge-travisci"><a href="http://travis-ci.org/tracker1/badges" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/tracker1/badges/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/@tracker1/config-merge" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@tracker1/config-merge.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/@tracker1/config-merge" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/@tracker1/config-merge.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/tracker1/config-merge" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/tracker1/config-merge.svg" alt="Dependency Status" /></a></span>
+<span class="badge-daviddmdev"><a href="https://david-dm.org/tracker1/config-merge?type=dev" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/tracker1/config-merge.svg" alt="Dev Dependency Status" /></a></span>
 
 Deep merge configuration `.yml` files in directory trees into output files. 
+
 ## Installation
 
 ### Global
@@ -111,8 +118,10 @@ String in heritance is as follows (example with `en-us`):
 
 For a environment targets, the `!default` above would be replaced by the output of `config1`.
 
-## Future
+## TODO
 
+- Flush out tests
+- Integrate with TravisCI
 - Support `.json` JSON6 as input
 - Support `.mjs` es6 module as input
 - Support `.js` common-js as input

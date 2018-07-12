@@ -4,14 +4,26 @@ const yaml = require('js-yaml');
 
 const readYaml = async (name, filepath) => [name.replace(/\.(yml|yaml)$/, ''), yaml.safeLoad(await fs.readFile(filepath, 'utf8'))];
 
-const getImageList = async directory => (await fs.readdir(directory)).filter(f => (/\.(jpg|png|gif|svg)$/).test(f))
-  .reduce((o, f) => Object.assign(o, {[path.basename(f)]: path.join(directory, f)}), {});
+const getImageList = async directory => {
+  try {
+    return (await fs.readdir(directory)).filter(f => (/\.(jpg|png|gif|svg)$/).test(f))
+      .reduce((o, f) => Object.assign(o, {[path.basename(f)]: path.join(directory, f)}), {});
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.message.includes('ENOENT')) return {};
+    throw error;
+  }
+}
 
 const getConfigFiles = async directory => {
-  const files = (await fs.readdir(directory))
-    .filter(f => (/\.(yml|yaml)$/).test(f));
-  return (await Promise.all(files.map(f => readYaml(f, path.join(directory, f)))))
-    .reduce((o, [k, v]) => Object.assign(o, {[k]: v}), {});
+  try {
+    const files = (await fs.readdir(directory))
+      .filter(f => (/\.(yml|yaml)$/).test(f));
+    return (await Promise.all(files.map(f => readYaml(f, path.join(directory, f)))))
+      .reduce((o, [k, v]) => Object.assign(o, {[k]: v}), {});
+  } catch(error) {
+    if (error.code === 'ENOENT' || error.message.includes('ENOENT')) return {};
+    throw error;
+  }
 }
 
 const loadConfig = async directory => {

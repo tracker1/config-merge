@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('mz/fs');
+const getImage = require('../get-image');
 
 const mkdir = async p => {
   try {
@@ -10,9 +11,8 @@ const mkdir = async p => {
   }
 }
 
-const loadImages = async images => {
-  return images;
-}
+const loadImages = async images => (await Promise.all(Object.values(images).map(getImage)))
+  .reduce((o, i) => Object.assign(o, { [i.name]: i }), {});
 
 async function processOutput(targets, outputDirectory) {
   for (const [k,v] of Object.entries(targets)) {

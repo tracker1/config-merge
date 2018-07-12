@@ -15,9 +15,26 @@ Deep merge configuration `.yml` files in directory trees into output files.
 
 ### CLI
 
+*Output directory must exist before calling*
+
 `config-merge inputDirectory outputDirectory`
 
-### Structure
+### API
+
+```
+// full input/output
+const configMerge = require('config-merge');
+...
+  await configMerge('./config', './dist');
+
+
+// input directory to object
+const configMergeInput = require('config-merge/src/process-input');
+...
+  const configs = configMergeInput('./config');
+```
+
+## Structure
 
 #### input
 

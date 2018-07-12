@@ -38,6 +38,7 @@
   "scripts": {
     "test": "jest --coverage",
     "pretestf": "node scripts/pretestf",
-    "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output"
+    "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output",
+    "public-publish": "npm publish --access public"
   }
 }

@@ -9,6 +9,7 @@
     "url": "git+https://github.com/tracker1/config-merge.git"
   },
   "author": "Michael J. Ryan <tracker1@gmail.com>",
+  "keywords": "config,configuration,merge,inheritance,hierarchy,hierarchical,yaml,json,images,strings,localization,internationalization,l10n,i18n",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tracker1/config-merge/issues"

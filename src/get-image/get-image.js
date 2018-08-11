@@ -1,6 +1,6 @@
-const { basename } = require('path');
-const fs = require('mz/fs');
-const sizeOf = require('image-size');
+const { basename } = require("path");
+const fs = require("mz/fs");
+const sizeOf = require("image-size");
 
 /**
  * @typedef {Object} ImageDetail
@@ -18,12 +18,14 @@ const sizeOf = require('image-size');
  */
 async function getImage(imagePath) {
   const img = await fs.readFile(imagePath);
-  const {width, height, type} = sizeOf(img);
+  const { width, height, type } = sizeOf(img);
 
   return {
-    width, height, type,
+    width,
+    height,
+    type,
     name: basename(imagePath),
-    data: img.toString('base64'),
+    data: img.toString("base64")
   };
 }
 

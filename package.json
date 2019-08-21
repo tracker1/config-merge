@@ -62,6 +62,7 @@
     "jsxBracketSameLine": true
   },
   "scripts": {
+    "clean": "npx rimraf coverage temp",
     "test": "jest --coverage",
     "pretestf": "node scripts/pretestf",
     "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output",

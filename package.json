@@ -66,7 +66,7 @@
     "pretestf": "node scripts/pretestf",
     "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output",
     "publish-patch": "npm version patch && git push && git push --tags && npm publish --access public",
-    "publish-minor": "npm version patch && git push && git push --tags && npm publish --access public",
-    "publish-major": "npm version patch && git push && git push --tags && npm publish --access public"
+    "publish-minor": "npm version minor && git push && git push --tags && npm publish --access public",
+    "publish-major": "npm version major && git push && git push --tags && npm publish --access public"
   }
 }

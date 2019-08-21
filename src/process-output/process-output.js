@@ -5,14 +5,17 @@ const getImage = require('../get-image');
 const mkdir = async p => {
   try {
     await fs.mkdir(p);
-  } catch(error) {
+  } catch (error) {
     if (error.code === 'EEXIST' || error.message.includes('EEXIST')) return; // EEXIST
     throw error;
   }
-}
+};
 
-const loadImages = async images => (await Promise.all(Object.values(images).map(getImage)))
-  .reduce((o, i) => Object.assign(o, { [i.name]: i }), {});
+const loadImages = async images =>
+  (await Promise.all(Object.values(images).map(getImage))).reduce(
+    (o, i) => Object.assign(o, { [i.name]: i }),
+    {}
+  );
 
 /**
  * Takes input target data and outputs it to a given path
@@ -21,7 +24,7 @@ const loadImages = async images => (await Promise.all(Object.values(images).map(
  * @return {Promise}
  */
 async function processOutput(targets, outputDirectory) {
-  for (const [k,v] of Object.entries(targets)) {
+  for (const [k, v] of Object.entries(targets)) {
     const out = path.join(outputDirectory, k);
     await mkdir(out);
     const images = await loadImages(v.images);

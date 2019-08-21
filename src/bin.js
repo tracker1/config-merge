@@ -4,38 +4,38 @@ const minimist = require('minimist');
 const { isDirectory } = require('./util');
 const configMerge = require('./index');
 
-const helpText = '\nUsage:n\    config-merge inputDirectory outputDirectory\n';
+const helpText = '\nUsage:n    config-merge inputDirectory outputDirectory\n';
 
 const checkDir = async ([name, path]) => {
   if (!(await isDirectory(path))) {
-    return(`${name} '${path}' is not a directory.`);
+    return `${name} '${path}' is not a directory.`;
   }
-}
+};
 
 const checkDirs = async dirs => {
   const errors = (await Promise.all(Object.entries(dirs).map(checkDir))).filter(r => r);
   if (errors.length) {
-    throw({ message: `\n${errors.join('\n')}\n${helpText}` });
+    throw { message: `\n${errors.join('\n')}\n${helpText}` };
     return true;
   }
   return false;
-}
+};
 
 async function main(skip, processArgs) {
   if (skip) return;
 
   const argv = minimist(processArgs.slice(2));
 
-  switch(true) {
+  switch (true) {
     case argv.help:
     case argv['?']:
     case argv._.length != 2:
       console.log();
       return;
   }
-  
+
   const [inputDirectory, outputDirectory] = argv._;
-  
+
   if (await checkDirs({ inputDirectory, outputDirectory })) return;
 
   console.log(`PROCESSING: ${inputDirectory} ${outputDirectory}`);

@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/tracker1/config-merge#readme",
   "dependencies": {
+    "@tracker1/deep-merge": "^1.0.0",
     "image-size": "^0.6.3",
     "js-yaml": "^3.12.0",
     "minimist": "^1.2.0",
@@ -50,6 +51,15 @@
         "statements": 100
       }
     }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "parser": "babel",
+    "jsxBracketSameLine": true
   },
   "scripts": {
     "test": "jest --coverage",

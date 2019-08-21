@@ -1,4 +1,4 @@
-const deepMerge = require('../deep-merge');
+const deepMerge = require('@tracker1/deep-merge');
 
 /**
  * Wrap up the inheritance change for use with building Strings
@@ -7,12 +7,12 @@ const deepMerge = require('../deep-merge');
  * @param {function} getBase Method to retrieve appropriate base to inherit from
  * @returns {object} New/Merged object
  */
-const mergeLang = (input, filter, getBase) => Object.entries(input)
-    .filter(([k]) => !(/^[\_\.]/).test(k) && filter(k))
-    .map(([k, v]) => [k.toLowerCase().replace(/^[\!]/,''), v])
+const mergeLang = (input, filter, getBase) =>
+  Object.entries(input)
+    .filter(([k]) => !/^[\_\.]/.test(k) && filter(k))
+    .map(([k, v]) => [k.toLowerCase().replace(/^[\!]/, ''), v])
     .map(([k, v]) => [k, deepMerge(getBase(k), v)])
-    .reduce((o, [k,v]) => Object.assign(o, { [k]:v }), {});
-
+    .reduce((o, [k, v]) => Object.assign(o, { [k]: v }), {});
 
 /**
  * Does the input match a language name
@@ -24,7 +24,7 @@ const matchLang = l => /^[A-Za-z]{2}$/.test(l);
 // matches language-locale string
 /**
  * Does the input match a language-locale string
- * @param {string} l 
+ * @param {string} l
  * @returns {boolean} is a language-locale string
  */
 const matchLoc = l => /^[A-Za-z]{2}\-[A-Za-z]{2}$/.test(l);
@@ -32,18 +32,21 @@ const matchLoc = l => /^[A-Za-z]{2}\-[A-Za-z]{2}$/.test(l);
 // gets language part of a string
 /**
  * Get the language portion of a language/language-locale string
- * @param {string} l 
+ * @param {string} l
  * @returns {string} the language-portion of the string
  */
-const lang = l => l.toLowerCase().trim().split('-')[0];
+const lang = l =>
+  l
+    .toLowerCase()
+    .trim()
+    .split('-')[0];
 
 /**
  * gets the default value for the input item
- * @param {object} i 
+ * @param {object} i
  * @returns {object} the default property of the input, or an empty object
  */
-const getDefault = i => i && (i.default || i['!default']) || {};
-
+const getDefault = i => (i && (i.default || i['!default'])) || {};
 
 /**
  * creates a merged default value object
@@ -51,9 +54,16 @@ const getDefault = i => i && (i.default || i['!default']) || {};
  * @param {object} b Right side to merge
  * @returns {object} Merged object defining only a default property
  */
-const mergeDefault = (a, b) => ({ default: deepMerge(getDefault(a), getDefault(b)) });
+const mergeDefault = (a, b) => ({
+  default: deepMerge(getDefault(a), getDefault(b)),
+});
 
 // exports all methods
 module.exports = {
-  mergeLang, matchLang, matchLoc, lang, getDefault, mergeDefault
+  mergeLang,
+  matchLang,
+  matchLoc,
+  lang,
+  getDefault,
+  mergeDefault,
 };

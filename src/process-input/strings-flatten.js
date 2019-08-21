@@ -1,4 +1,4 @@
-const deepMerge = require('../deep-merge');
+const deepMerge = require('@tracker1/deep-merge');
 
 const { mergeLang, matchLang, matchLoc, lang, mergeDefault } = require('./strings-merge-lang');
 
@@ -10,19 +10,19 @@ const { mergeLang, matchLang, matchLoc, lang, mergeDefault } = require('./string
 const flattenStrings = (base, input) => {
   /**
    * For the "default" a key of "default" then "!default" is checked.
-   * 
+   *
    * Inheritance is as follows:
-   * 
+   *
    *    - base.default
    *    - input.default
    *    - base.language
    *    - base.language-location *
    *    - input.language
    *    - input.language-location *
-   * 
+   *
    * Language is two character language code (en, es, ...)
    * Location is two character country code (us, es, mx, fr, ...)
-   * 
+   *
    * * - language-location only
    */
 
@@ -33,16 +33,16 @@ const flattenStrings = (base, input) => {
   const getBaseLang = l => result[lang(l)] || result.default;
 
   // is language-locale and has a base language-locale to inherit from
-  const baseLoc = l => matchLoc(l) && base && base[l]
+  const baseLoc = l => matchLoc(l) && base && base[l];
 
   // gets the merged base for an input language-locale
-  const getBaseLoc = l => 
-    baseLoc(l) ? 
-      [
-        result[lang(l)] || result.default, 
-        base && base[l], 
-        input && input[lang(l)],
-      ].reduce(deepMerge, {}) : getBaseLang(l);
+  const getBaseLoc = l =>
+    baseLoc(l)
+      ? [result[lang(l)] || result.default, base && base[l], input && input[lang(l)]].reduce(
+          deepMerge,
+          {}
+        )
+      : getBaseLang(l);
 
   // add/merge base languages
   Object.assign(result, mergeLang(base, matchLang, _ => result.default));
@@ -58,6 +58,6 @@ const flattenStrings = (base, input) => {
 
   // return merged/flattened result
   return result;
-}
+};
 
 module.exports = { flattenStrings };

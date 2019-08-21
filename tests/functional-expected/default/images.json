@@ -1,0 +1,16 @@
+{
+  "image1.svg": {
+    "width": 200,
+    "height": 60,
+    "type": "svg",
+    "name": "image1.svg",
+    "data": "PHN2ZyBoZWlnaHQ9IjYwIiB3aWR0aD0iMjAwIj4KICA8dGV4dCB4PSIwIiB5PSIxNSIgZmlsbD0icmVkIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAyMCw0MCkiPjEgZGVmYXVsdDwvdGV4dD4KPC9zdmc+"
+  },
+  "image2.svg": {
+    "width": 200,
+    "height": 60,
+    "type": "svg",
+    "name": "image2.svg",
+    "data": "PHN2ZyBoZWlnaHQ9IjYwIiB3aWR0aD0iMjAwIj4KICA8dGV4dCB4PSIwIiB5PSIxNSIgZmlsbD0icmVkIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAyMCw0MCkiPjIgZGVmYXVsdDwvdGV4dD4KPC9zdmc+"
+  }
+}

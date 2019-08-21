@@ -1,0 +1,14 @@
+{
+  "default": {
+    "test": "default",
+    "test2": "default"
+  },
+  "es": {
+    "test": "default es",
+    "test2": "default"
+  },
+  "es-es": {
+    "test": "default es",
+    "test2": "default es-es"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "default": {
+    "test": "default",
+    "test2": "default"
+  },
+  "es": {
+    "test": "target es",
+    "test2": "target es"
+  },
+  "es-es": {
+    "test": "target.environment es-es",
+    "test2": "default es-es"
+  }
+}

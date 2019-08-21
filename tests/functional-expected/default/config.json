@@ -1,0 +1,9 @@
+{
+  "feature": {
+    "feature1": "default",
+    "feature2": "default"
+  },
+  "option": {
+    "option1": "default"
+  }
+}

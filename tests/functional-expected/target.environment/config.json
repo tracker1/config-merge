@@ -1,0 +1,9 @@
+{
+  "feature": {
+    "feature1": "target.environment",
+    "feature2": "default"
+  },
+  "option": {
+    "option1": "target.environment"
+  }
+}

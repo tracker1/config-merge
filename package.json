@@ -33,12 +33,12 @@
   "dependencies": {
     "@tracker1/deep-merge": "^1.0.0",
     "image-size": "^0.6.3",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.13.1",
     "minimist": "^1.2.0",
     "mz": "^2.7.0"
   },
   "devDependencies": {
-    "jest": "^23.2.0",
+    "jest": "^23.6.0",
     "mkdirp-promise": "^5.0.1",
     "rimraf-promise": "^2.0.0"
   },
@@ -66,8 +66,8 @@
     "test": "jest --coverage",
     "pretestf": "node scripts/pretestf",
     "testf": "node src/bin.js ./tests/functional-input ./temp/functional-output",
-    "publish-patch": "npm version patch && git push && git push --tags && npm publish --access public",
-    "publish-minor": "npm version minor && git push && git push --tags && npm publish --access public",
-    "publish-major": "npm version major && git push && git push --tags && npm publish --access public"
+    "publish-patch": "npm version patch && git push && git push --tags",
+    "publish-minor": "npm version minor && git push && git push --tags",
+    "publish-major": "npm version major && git push && git push --tags"
   }
 }

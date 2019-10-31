@@ -1,6 +1,6 @@
 # @tracker1/config-merge
 
-<span class="badge-travisci"><img src="https://github.com/tracker1/config-merge/workflows/Github%20CI/badge.svg" alt="Github CI Status" /></span>
+<span class="badge-github-ci"><a href="https://github.com/tracker1/config-merge" title="Check this project on Github"><img src="https://github.com/tracker1/config-merge/workflows/Node%20CI/badge.svg" alt="Github CI Status" /></a></span>
 <span class="badge-npmversion"><a href="https://npmjs.org/package/@tracker1/config-merge" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@tracker1/config-merge.svg" alt="NPM version" /></a></span>
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/@tracker1/config-merge" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/@tracker1/config-merge.svg" alt="NPM downloads" /></a></span>
 <span class="badge-daviddm"><a href="https://david-dm.org/tracker1/config-merge" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/tracker1/config-merge.svg" alt="Dependency Status" /></a></span>

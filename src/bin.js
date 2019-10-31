@@ -4,7 +4,7 @@ const minimist = require('minimist');
 const { isDirectory } = require('./util');
 const configMerge = require('./index');
 
-const helpText = '\nUsage:n    config-merge inputDirectory outputDirectory\n';
+const helpText = '\nUsage:\n    config-merge inputDirectory outputDirectory\n';
 
 const checkDir = async ([name, path]) => {
   if (!(await isDirectory(path))) {
@@ -30,7 +30,7 @@ async function main(skip, processArgs) {
     case argv.help:
     case argv['?']:
     case argv._.length != 2:
-      console.log();
+      console.log(helpText);
       return;
   }
 

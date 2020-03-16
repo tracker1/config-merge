@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('mz/fs');
+const { promises: fs } = require('fs');
 const yaml = require('js-yaml');
 
 const readYaml = async (name, filepath) => {

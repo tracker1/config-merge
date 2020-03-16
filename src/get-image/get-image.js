@@ -1,5 +1,5 @@
 const { basename } = require('path');
-const fs = require('mz/fs');
+const { promises: fs } = require('fs');
 const sizeOf = require('image-size');
 
 /**

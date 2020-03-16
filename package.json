@@ -1,6 +1,6 @@
 {
   "name": "@tracker1/config-merge",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Deep merge configuration .yml in directory trees into output file.",
   "main": "src/index.js",
   "bin": "src/bin.js",

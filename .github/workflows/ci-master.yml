@@ -5,10 +5,10 @@ on:
     branches: 
       - master
   push:
+    tags-ignore:
+      - 'v*'
     branches:
       - master
-    tags-ignore:
-      - 'v*.*.*'
 
 jobs:
   build:

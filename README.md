@@ -54,6 +54,8 @@ const configMergeInput = require('config-merge/src/process-input');
           - es-us.yaml
         - images/     <-- only brings in (png, jpg, gif, svg, webp)
           logo.png
+        - markdown/ <-- only brings in (md)
+          file.md
         ui.yaml
         app.yaml
       - config1/
@@ -100,6 +102,10 @@ Images, as a `config/images` directory, should be used sparingly.  It will only 
   - `height` - height
   - `type` - image file extension/type
   - `data` - base64 encoded image file
+
+### Markdown
+
+Markdown (0.6.0), as a `config/markdown` directory, should be used sparingly. It will only bring in files ending in `.md` and will output `markdown.json` an object with the original filename as the key and the contents as the value, expects `UTF8` encoded content.
 
 ### Strings
 

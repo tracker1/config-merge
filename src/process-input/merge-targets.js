@@ -9,6 +9,7 @@ const rollupConfig = (base, target) => {
     name: target.name,
     config: deepMerge(base && base.config, target && target.config),
     images: deepMerge(base && base.images, target && target.images),
+    markdown: deepMerge(base && base.markdown, target && target.markdown),
     strings: flattenStrings((base && base.strings) || {}, (target && target.strings) || {}),
   };
 };
@@ -27,11 +28,14 @@ async function mergeTargets(targets) {
 
   result.default.strings = flattenStrings({}, result.default.strings);
 
-  const isFirstLevel = k => k !== 'default' && k.indexOf('.') === -1;
-  const isSecondLevel = k => k.indexOf('.') > 0;
-  const getSecondBase = k => result[k.split('.')[0]] || result.default;
+  const isFirstLevel = (k) => k !== 'default' && k.indexOf('.') === -1;
+  const isSecondLevel = (k) => k.indexOf('.') > 0;
+  const getSecondBase = (k) => result[k.split('.')[0]] || result.default;
 
-  Object.assign(result, getRollup(targets, isFirstLevel, _ => result.default || {}));
+  Object.assign(
+    result,
+    getRollup(targets, isFirstLevel, (_) => result.default || {})
+  );
   Object.assign(result, getRollup(targets, isSecondLevel, getSecondBase));
 
   return result;

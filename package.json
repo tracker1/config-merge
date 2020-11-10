@@ -34,7 +34,7 @@
     "@tracker1/deep-merge": "^1.0.0",
     "image-size": "^0.8.3",
     "js-yaml": "^3.13.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "canvas": "^2.6.0",

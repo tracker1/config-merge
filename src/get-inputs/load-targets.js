@@ -11,10 +11,10 @@ const readYaml = async (name, filepath) => {
   }
 };
 
-const getImageList = async directory => {
+const getImageList = async (directory) => {
   try {
     return (await fs.readdir(directory))
-      .filter(f => /\.(jpg|png|gif|svg)$/.test(f))
+      .filter((f) => /\.(jpg|png|gif|svg)$/.test(f))
       .reduce((o, f) => Object.assign(o, { [path.basename(f)]: path.join(directory, f) }), {});
   } catch (error) {
     if (error.code === 'ENOENT' || error.message.includes('ENOENT')) return {};
@@ -22,10 +22,21 @@ const getImageList = async directory => {
   }
 };
 
-const getConfigFiles = async directory => {
+const getMarkdownList = async (directory) => {
   try {
-    const files = (await fs.readdir(directory)).filter(f => /\.(yml|yaml)$/.test(f));
-    return (await Promise.all(files.map(f => readYaml(f, path.join(directory, f))))).reduce(
+    return (await fs.readdir(directory))
+      .filter((f) => /\.(md)$/.test(f))
+      .reduce((o, f) => Object.assign(o, { [path.basename(f)]: path.join(directory, f) }), {});
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.message.includes('ENOENT')) return {};
+    throw error;
+  }
+};
+
+const getConfigFiles = async (directory) => {
+  try {
+    const files = (await fs.readdir(directory)).filter((f) => /\.(yml|yaml)$/.test(f));
+    return (await Promise.all(files.map((f) => readYaml(f, path.join(directory, f))))).reduce(
       (o, [k, v]) => Object.assign(o, { [k]: v }),
       {}
     );
@@ -35,17 +46,19 @@ const getConfigFiles = async directory => {
   }
 };
 
-const loadConfig = async directory => {
-  const [config, strings, images] = await Promise.all([
+const loadConfig = async (directory) => {
+  const [config, strings, images, markdown] = await Promise.all([
     getConfigFiles(directory),
     getConfigFiles(path.resolve(directory, 'strings')),
     getImageList(path.resolve(directory, 'images')),
+    getMarkdownList(path.resolve(directory, 'markdown')),
   ]);
   return {
     directory,
     config,
     strings,
     images,
+    markdown,
     name: path.basename(directory).replace(/^\!/, ''),
   };
 };
@@ -53,7 +66,7 @@ const loadConfig = async directory => {
 async function loadTargets(inputDirectory) {
   const results = await fs.readdir(inputDirectory);
   const targets = await Promise.all(
-    results.filter(r => !/^[_\.]/.test(r)).map(r => loadConfig(path.resolve(inputDirectory, r)))
+    results.filter((r) => !/^[_\.]/.test(r)).map((r) => loadConfig(path.resolve(inputDirectory, r)))
   );
   return targets.reduce((o, t) => Object.assign(o, { [t.name]: t }), {});
 }

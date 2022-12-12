@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "canvas": "^2.6.0",
-    "jest": "^25.0.0",
+    "jest": "^29.3.1",
     "mkdirp-promise": "^5.0.1",
     "rimraf-promise": "^2.0.0"
   },
